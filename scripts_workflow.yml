@@ -1,1 +1,43 @@
-scripts.workflow.yml
+name: Run Bash Scripts
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run_scripts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Critical Backups
+        run: bash Help-me.scripts/backupcritical.sh
+
+      - name: Securing Firewall
+        run: bash Help-me.scripts/ufw.sh
+
+      - name: Unauthorized Files
+        run: bash Help-me.scripts/clearmp3.sh
+
+      - name: Removing startup scritps
+        run: bash Help-me.scripts/removestartups.sh
+
+      - name: Users
+        run: bash Help-me.scripts/users.sh
+
+      - name: Hardening FTP, VSFTP, SQL, SSH 
+        run: bash Help-me.scripts/services.sh
+
+      - name: Run Script 7
+        run: bash Help-me.scripts/script7.sh
+
+      - name: Run Script 8
+        run: bash Help-me.scripts/script8.sh
+
+      - name: Run Script 9
+        run: bash Help-me.scripts/script9.sh
+
+      # Add more steps for additional scripts if needed
